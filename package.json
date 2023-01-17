@@ -1,0 +1,17 @@
+{
+  "name": "mastodon-archive",
+  "version": "1.0.0",
+  "author": "Ricard Torres <ricard@ricard.dev>",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "build": "node index.js && npm run css",
+    "css": "sass src/styles.scss dist/styles.css --style=compressed --no-source-map",
+    "css:watch": "sass  src/styles.scss dist/styles.css --no-source-map --watch"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "dependencies": {
+    "sass": "^1.57.1"
+  }
+}

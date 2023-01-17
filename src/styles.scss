@@ -1,0 +1,46 @@
+$dark: #111920;
+$light: white;
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-size: 1.7rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin: 1rem;
+  color: $light;
+  background-color: $dark;
+  line-height: 1.5em;
+}
+
+main {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+
+  .item {
+    color: $dark;
+    background: $light;
+    border: 1px solid;
+    padding: 1.5rem 2rem;
+    overflow: hidden;
+  }
+}
+
+a {
+  word-wrap: break-word;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+footer {
+  color: $dark;
+  background: $light;
+  text-align: center;
+  padding: 1rem;
+  margin: 1rem 0;
+}
