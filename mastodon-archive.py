@@ -79,7 +79,7 @@ footer = """
 </body>
 </html>"""
 
-content = [header] + ''.join(content) + [footer]
+content = header + ''.join(content) + footer
 
 os.mkdir('./dist')
 with open (filename, 'w') as f:
