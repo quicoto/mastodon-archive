@@ -63,9 +63,11 @@ header = """
 <body>
   <header>
     <h1>Archive for Ricard's posts on ricard.social</h1>
-  </header>"""
+  </header>
+	<main>"""
 
 footer = """
+	</main>
   <footer>
     <p>
       <a href="https://github.com/quicoto/mastodon-archive">Grab the code on GitHub</a>
