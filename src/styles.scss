@@ -23,8 +23,13 @@ main {
     color: $dark;
     background: $light;
     border: 1px solid;
-    padding: 1.5rem 2rem;
+    padding: 1.5rem 2rem 0 2rem;
     overflow: hidden;
+
+    &__date {
+      border-bottom: 1px solid;
+      padding-bottom: 1rem;
+    }
   }
 }
 

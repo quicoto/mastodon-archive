@@ -20,8 +20,12 @@ main .item {
   color: #111920;
   background: white;
   border: 1px solid;
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 2rem 0 2rem;
   overflow: hidden;
+}
+main .item__date {
+  border-bottom: 1px solid;
+  padding-bottom: 1rem;
 }
 
 a {
