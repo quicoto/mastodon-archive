@@ -2,10 +2,8 @@
 # encoding=utf8
 
 import os
-import sys
 import argparse
 from mastodon import Mastodon
-import sitemap.generator as generator
 
 # parse arguments
 parser = argparse.ArgumentParser (description = 'Generate an HTML archive of a mastodon user.')
@@ -49,11 +47,10 @@ while posts and counter < args.max_urls:
 			break
 
 	# fetch new posts if necessary
-	if counter < args.max_urls:
-		posts = mstdn.fetch_next(posts)
+	posts = mstdn.fetch_next(posts)
 
 # Create file
 os.mkdir('./dist')
-	with open (filename, 'w') as f:
-		f.write (content)
+with open (filename, 'w') as f:
+	f.write (content)
 
