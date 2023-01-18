@@ -24,7 +24,7 @@ jobs:
 
       - name: Build
         run: |
-          python3 mastodon-sitemap.py --instance https://ricard.social        \
+          python3 mastodon-archive.py --instance https://ricard.social        \
               --access-token ${{ secrets.ACCESS_TOKEN }}
 
       - name: Deploy 🚀
