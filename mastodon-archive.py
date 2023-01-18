@@ -30,6 +30,14 @@ counter = 0
 
 content = []
 
+def _item(object):
+  return f"""
+  <div class="item">
+    <div class="item__date"><a href="{object.url}" target="_blank" rel="noopener noreferrer">{utils.formatDate(object.published)}</a></div>
+    <div class="item__content">{object.content}</div>
+  </div>
+  """
+
 # iterate posts
 while posts and counter < args.max_urls:
 	for post in posts:
@@ -37,9 +45,14 @@ while posts and counter < args.max_urls:
 		if post.reblog or post.visibility != "public":
 			continue
 
-		# add to sitemap
-		# push HTMl into the content array
-		content.append(post.content)
+
+		item = _item({
+			"url": post.url,
+			"published": post.created_at,
+			"content": post.content
+		})
+
+		content.append(item)
 		counter += 1
 
 		# break if we saw enough...
