@@ -49,8 +49,38 @@ while posts and counter < args.max_urls:
 	# fetch new posts if necessary
 	posts = mstdn.fetch_next(posts)
 
-# Create file
+header = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ricard's archive | ricard.social</title>
+  <link rel="stylesheet" href="styles.css">
+  <meta name="robots" content="noindex">
+</head>
+<body>
+  <header>
+    <h1>Archive for Ricard's posts on ricard.social</h1>
+  </header>"""
+
+footer = """
+  <footer>
+    <p>
+      <a href="https://github.com/quicoto/mastodon-archive">Grab the code on GitHub</a>
+    </p>
+    <p>
+      %VERSION%
+    </p>
+  </footer>
+</body>
+</html>"""
+
+content = [header] + ''.join(content) + [footer]
+
 os.mkdir('./dist')
 with open (filename, 'w') as f:
-	f.write (''.join(content))
+	f.write (content)
+os.system('cp style.css ./dist')
 
