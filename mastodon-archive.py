@@ -43,10 +43,8 @@ while posts and counter < args.max_urls:
 		if post.reblog or post.visibility != "public":
 			continue
 
-		print (post)
-
 		item = _item({
-			"url": post.url,
+			"url": post.uri,
 			"published": post.created_at,
 			"content": post.content
 		})
