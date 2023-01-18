@@ -52,5 +52,5 @@ while posts and counter < args.max_urls:
 # Create file
 os.mkdir('./dist')
 with open (filename, 'w') as f:
-	f.write (content)
+	f.write (''.join(content))
 
