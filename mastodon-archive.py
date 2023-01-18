@@ -28,11 +28,11 @@ counter = 0
 
 content = []
 
-def _item(object):
+def _item(post):
   return f"""
   <div class="item">
-    <div class="item__date"><a href="{object.url}" target="_blank" rel="noopener noreferrer">{utils.formatDate(object.published)}</a></div>
-    <div class="item__content">{object.content}</div>
+    <div class="item__date"><a href="{post.uri}" target="_blank" rel="noopener noreferrer">{post.created_at}</a></div>
+    <div class="item__content">{post.content}</div>
   </div>
   """
 
@@ -43,13 +43,7 @@ while posts and counter < args.max_urls:
 		if post.reblog or post.visibility != "public":
 			continue
 
-		item = _item({
-			"url": post.uri,
-			"published": post.created_at,
-			"content": post.content
-		})
-
-		content.append(item)
+		content.append(_item(post))
 		counter += 1
 
 		# break if we saw enough...
