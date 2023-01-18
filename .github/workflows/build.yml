@@ -12,10 +12,20 @@ jobs:
         with:
             persist-credentials: false
 
-      - name: Install and Build
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+            python-version: '3.9'
+            cache: 'pip'
+            cache-dependency-path: 'mastodon-archive.py'
+
+      - name: Install Deps
+        run: pip3 install argparse Mastodon.py sitemap_python
+
+      - name: Build
         run: |
-          npm ci
-          npm run build
+          python3 mastodon-sitemap.py --instance https://ricard.social        \
+              --access-token ${{ secrets.ACCESS_TOKEN }}
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v4
