@@ -97,5 +97,5 @@ content = header + ''.join(content) + footer
 os.mkdir('./dist')
 with open (filename, 'w') as f:
 	f.write (content)
-os.system('cp style.css ./dist')
+os.system('cp styles.css ./dist')
 
