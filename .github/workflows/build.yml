@@ -22,7 +22,7 @@ jobs:
             cache-dependency-path: 'mastodon-archive.py'
 
       - name: Install Deps
-        run: pip3 install argparse Mastodon.py sitemap_python
+        run: pip3 install argparse Mastodon.py
 
       - name: Build
         run: |
