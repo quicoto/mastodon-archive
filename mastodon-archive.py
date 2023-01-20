@@ -76,9 +76,6 @@ footer = """
     <p>
       <a href="https://github.com/quicoto/mastodon-archive">Grab the code on GitHub</a>
     </p>
-    <p>
-      %VERSION%
-    </p>
   </footer>
 </body>
 </html>"""
