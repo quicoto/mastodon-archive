@@ -43,7 +43,12 @@ while posts and counter < args.max_urls:
 		if post.visibility == 'private' or post.visibility == 'direct':
 			continue
 
-		content.append(_item(post))
+    if post.reblog:
+		  content.append(_item(post))
+    else:
+      reblog = mstdn.status(post.id)
+      content.append(_item(reblog))
+
 		counter += 1
 
 		# break if we saw enough...
