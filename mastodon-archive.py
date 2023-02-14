@@ -69,7 +69,7 @@ header = """
     <h1>Archive for Ricard's posts on ricard.social</h1>
     <h2>Number of posts: %s</h2>
   </header>
-  <main>""" % counter
+  <main>""" % len(posts)
 
 footer = """
 	</main>
