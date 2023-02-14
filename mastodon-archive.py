@@ -40,15 +40,10 @@ def _item(post):
 while posts and counter < args.max_urls:
 	for post in posts:
 		# Excludes private or direct conversations
-		if post.visibility == 'private' or post.visibility == 'direct':
+		if post.reblog or post.visibility == 'private' or post.visibility == 'direct':
 			continue
 
-		if post.reblog:
-			content.append(_item(post))
-		else:
-			reblog = mstdn.status(post.id)
-			content.append(_item(reblog))
-
+		content.append(_item(post))
 		counter += 1
 
 		# break if we saw enough...
