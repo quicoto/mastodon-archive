@@ -39,8 +39,8 @@ def _item(post):
 # iterate posts
 while posts and counter < args.max_urls:
 	for post in posts:
-		# only consider public posts
-		if post.reblog or post.visibility != "public":
+		# Excludes private or direct conversations
+		if post.visibility == 'private' or post.visibility == 'direct':
 			continue
 
 		content.append(_item(post))
@@ -69,7 +69,7 @@ header = """
     <h1>Archive for Ricard's posts on ricard.social</h1>
     <h2>Number of posts: %s</h2>
   </header>
-  <main>""" % len(posts)
+  <main>""" % counter
 
 footer = """
 	</main>
