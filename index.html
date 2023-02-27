@@ -12,9 +12,104 @@
 <body>
   <header>
     <h1>Archive for Ricard's posts on ricard.social</h1>
-    <h2>Number of posts: 1141</h2>
+    <h2>Number of posts: 1160</h2>
   </header>
   <main>
+  <div class="item">
+    <div class="item__date"><a href="https://ricard.social/users/ricard/statuses/109935782852442420" target="_blank" rel="noopener noreferrer">2023-02-27 08:35:20.970000+00:00</a></div>
+    <div class="item__content"><p><span class="h-card"><a href="https://toot.io/@jan" class="u-url mention">@<span>jan</span></a></span> Thanks, Jan. I&#39;ll take a deeper look at the concurrency setting for the cron</p></div>
+  </div>
+  
+  <div class="item">
+    <div class="item__date"><a href="https://ricard.social/users/ricard/statuses/109935687008762704" target="_blank" rel="noopener noreferrer">2023-02-27 08:10:58.506000+00:00</a></div>
+    <div class="item__content"><p><span class="h-card"><a href="https://toot.io/@jan" class="u-url mention">@<span>jan</span></a></span> All the commands use the default (5?)</p><p><span class="h-card"><a href="https://mstdn.thms.uk/@michael" class="u-url mention">@<span>michael</span></a></span> suggested adding a SWAP space. I didn&#39;t have one, just did 🤞</p></div>
+  </div>
+  
+  <div class="item">
+    <div class="item__date"><a href="https://ricard.social/users/ricard/statuses/109935535994890113" target="_blank" rel="noopener noreferrer">2023-02-27 07:32:34.217000+00:00</a></div>
+    <div class="item__content"><p><span class="h-card"><a href="https://mstdn.thms.uk/@michael" class="u-url mention">@<span>michael</span></a></span> Excellent, I have disk to spare I&#39;ll try that. Thank you, Michael!</p></div>
+  </div>
+  
+  <div class="item">
+    <div class="item__date"><a href="https://ricard.social/users/ricard/statuses/109935522319072781" target="_blank" rel="noopener noreferrer">2023-02-27 07:29:05.541000+00:00</a></div>
+    <div class="item__content"><p><span class="h-card"><a href="https://mstdn.thms.uk/@michael" class="u-url mention">@<span>michael</span></a></span> The Postgre logs show all but up to:</p><p>checkpointer process (PID 39434) was terminated by signal 9: Killed</p><p>Then:</p><p>FATAL:  the database system is in recovery mode</p><p>LOG:  received fast shutdown request</p><p> FATAL:  the database system is shutting down</p><p>😿</p></div>
+  </div>
+  
+  <div class="item">
+    <div class="item__date"><a href="https://ricard.social/users/ricard/statuses/109935508084429989" target="_blank" rel="noopener noreferrer">2023-02-27 07:25:28.345000+00:00</a></div>
+    <div class="item__content"><p><span class="h-card"><a href="https://mstdn.thms.uk/@michael" class="u-url mention">@<span>michael</span></a></span> Found this in the syslog it seem to run out of memory, even though I&#39;m usually at 50%</p><p>Probably happened while running the media cleaup cronjob</p><p>Wondering if I can limit that memory usage somehow to prevent this?</p><p>postgresql@15-main.service: A process of this unit has been killed by the OOM killer.</p><p>system-postgresql.slice: A process of this unit has been killed by the OOM killer.</p></div>
+  </div>
+  
+  <div class="item">
+    <div class="item__date"><a href="https://ricard.social/users/ricard/statuses/109935488417170079" target="_blank" rel="noopener noreferrer">2023-02-27 07:20:28.239000+00:00</a></div>
+    <div class="item__content"><p><span class="h-card"><a href="https://toot.io/@jan" class="u-url mention">@<span>jan</span></a></span> You&#39;re going into the right direction, Jan.</p><p>Look at my syslog</p><p>systemd[1]: postgresql@15-main.service: A process of this unit has been killed by the OOM killer.</p><p>systemd[1]: system-postgresql.slice: A process of this unit has been killed by the OOM killer.</p><p>Is it possible to somehow limit the memory usage, so it doesn&#39;t happen again? :blobfoxthinkanime:</p></div>
+  </div>
+  
+  <div class="item">
+    <div class="item__date"><a href="https://ricard.social/users/ricard/statuses/109935485485808741" target="_blank" rel="noopener noreferrer">2023-02-27 07:19:43.509000+00:00</a></div>
+    <div class="item__content"><p><span class="h-card"><a href="https://social.afop.tech/@armin" class="u-url mention">@<span>armin</span></a></span> <span class="h-card"><a href="https://convo.casa/@lifeofguenter" class="u-url mention">@<span>lifeofguenter</span></a></span> Disk space is not an issue, plenty available. All my cache is on an S3 Object Storage</p><p>Thanks to@uastronomer@mastodon.monoceros.co.za I just found this in the syslog :blobcateyes: </p><p>systemd[1]: postgresql@15-main.service: A process of this unit has been killed by the OOM killer.</p><p>systemd[1]: system-postgresql.slice: A process of this unit has been killed by the OOM killer.</p></div>
+  </div>
+  
+  <div class="item">
+    <div class="item__date"><a href="https://ricard.social/users/ricard/statuses/109935471084994869" target="_blank" rel="noopener noreferrer">2023-02-27 07:16:03.771000+00:00</a></div>
+    <div class="item__content"><p><span class="h-card"><a href="https://mastodon.monoceros.co.za/@uastronomer" class="u-url mention">@<span>uastronomer</span></a></span> Thank you for the input, Allen!</p></div>
+  </div>
+  
+  <div class="item">
+    <div class="item__date"><a href="https://ricard.social/users/ricard/statuses/109935459073763139" target="_blank" rel="noopener noreferrer">2023-02-27 07:13:00.499000+00:00</a></div>
+    <div class="item__content"><p><span class="h-card"><a href="https://mastodon.monoceros.co.za/@uastronomer" class="u-url mention">@<span>uastronomer</span></a></span> What am I looking for in the syslog? I&#39;m at more or less the time of crash but can&#39;t identify much. </p><p>I&#39;m where it starts to log &quot;Rejected Announce activity&quot; as the relays can&#39;t post into the instance</p></div>
+  </div>
+  
+  <div class="item">
+    <div class="item__date"><a href="https://ricard.social/users/ricard/statuses/109935414303835710" target="_blank" rel="noopener noreferrer">2023-02-27 07:01:37.359000+00:00</a></div>
+    <div class="item__content"><p><span class="h-card"><a href="https://convo.casa/@lifeofguenter" class="u-url mention">@<span>lifeofguenter</span></a></span> Where do I get those, Günter? 😅</p></div>
+  </div>
+  
+  <div class="item">
+    <div class="item__date"><a href="https://ricard.social/users/ricard/statuses/109935413077535722" target="_blank" rel="noopener noreferrer">2023-02-27 07:01:18.647000+00:00</a></div>
+    <div class="item__content"><p><span class="h-card"><a href="https://mastodon.monoceros.co.za/@uastronomer" class="u-url mention">@<span>uastronomer</span></a></span> Could be, I&#39;m just using half right now but maybe the media removal cronjob took all the memory?</p></div>
+  </div>
+  
+  <div class="item">
+    <div class="item__date"><a href="https://ricard.social/users/ricard/statuses/109935411121262871" target="_blank" rel="noopener noreferrer">2023-02-27 07:00:48.797000+00:00</a></div>
+    <div class="item__content"><p><span class="h-card"><a href="https://toot.io/@jan" class="u-url mention">@<span>jan</span></a></span> Right now 2.15/3.83Gb used. Usually the server doesn&#39;t use more than 3Gb out of those 3.8Gb</p><p>Most probably it crashed during the media remove cronjob</p></div>
+  </div>
+  
+  <div class="item">
+    <div class="item__date"><a href="https://ricard.social/users/ricard/statuses/109935382007354095" target="_blank" rel="noopener noreferrer">2023-02-27 06:53:24.563000+00:00</a></div>
+    <div class="item__content"><p><a href="https://ricard.social/tags/MastoAdmin" class="mention hashtag" rel="tag">#<span>MastoAdmin</span></a> </p><p>Any idea how or why would <a href="https://ricard.social/tags/PostgreSQL" class="mention hashtag" rel="tag">#<span>PostgreSQL</span></a> crash by itself ❓ </p><p>It took down the instance in the middle of the night  ⛔ </p><p>/home/mastodon/live/vendor/bundle/ruby/3.0.0/gems/activerecord-6.1.7.2/lib/active_record/connection_adapters/postgresql_adapter.rb:83:in `rescue in new_client&#39;: connection to server on socket &quot;/var/run/postgresql/.s.PGSQL.5432&quot; failed: Connection refused (ActiveRecord::ConnectionNotEstablished)</p><p>---</p><p>Funny enough the api/health endpoint still returned OK</p><p>Thank you</p></div>
+  </div>
+  
+  <div class="item">
+    <div class="item__date"><a href="https://ricard.social/users/ricard/statuses/109932983962502128" target="_blank" rel="noopener noreferrer">2023-02-26 20:43:33.306000+00:00</a></div>
+    <div class="item__content"><p>Very inspired by this personal public wiki <a href="https://wiki.nikiv.dev" target="_blank" rel="nofollow noopener noreferrer"><span class="invisible">https://</span><span class="">wiki.nikiv.dev</span><span class="invisible"></span></a> :blobcataww: </p><p>&quot;This is my personal wiki where I share everything I know about this world in form of an online wiki built with <a href="https://ricard.social/tags/Docusaurus" class="mention hashtag" rel="tag">#<span>Docusaurus</span></a> on <a href="https://ricard.social/tags/GitHub" class="mention hashtag" rel="tag">#<span>GitHub</span></a>.&quot;</p><p>I do too have a (private) wiki (built with <a href="https://ricard.social/tags/Hugo" class="mention hashtag" rel="tag">#<span>Hugo</span></a>) and works really well for me.</p><p>I have force myself to write in it more.</p></div>
+  </div>
+  
+  <div class="item">
+    <div class="item__date"><a href="https://ricard.social/users/ricard/statuses/109931443663969650" target="_blank" rel="noopener noreferrer">2023-02-26 14:11:50.205000+00:00</a></div>
+    <div class="item__content"><p><span class="h-card"><a href="https://mastodon.au/@compass" class="u-url mention">@<span>compass</span></a></span> indeed, I haven&#39;t read the manga so I&#39;m not sure where we are exactly story-wise.</p><p>Do we have a date on the next season&#39;s release? This year or are we talking 2024?</p><p><a href="https://ricard.social/tags/BokuNoHeroAcademia" class="mention hashtag" rel="tag">#<span>BokuNoHeroAcademia</span></a></p></div>
+  </div>
+  
+  <div class="item">
+    <div class="item__date"><a href="https://ricard.social/users/ricard/statuses/109930669545008607" target="_blank" rel="noopener noreferrer">2023-02-26 10:54:58.085000+00:00</a></div>
+    <div class="item__content"><p><span class="h-card"><a href="https://mementomori.social/@rolle" class="u-url mention">@<span>rolle</span></a></span> <span class="h-card"><a href="https://botta.social/@vito" class="u-url mention">@<span>vito</span></a></span> I think not. Mastodon will not know the files are gone, it will try to serve them and the S3 will return 404 until the sync is done.</p><p>The reason I turned it on before the sync was to have already the new files uploaded to the S3. Didn&#39;t want to have to do yet another sync after the first one.</p><p>Not sure if this make sense.</p></div>
+  </div>
+  
+  <div class="item">
+    <div class="item__date"><a href="https://ricard.social/users/ricard/statuses/109930654184290771" target="_blank" rel="noopener noreferrer">2023-02-26 10:51:03.699000+00:00</a></div>
+    <div class="item__content"><p><span class="h-card"><a href="https://mementomori.social/@rolle" class="u-url mention">@<span>rolle</span></a></span> <span class="h-card"><a href="https://botta.social/@vito" class="u-url mention">@<span>vito</span></a></span> I did the S3 switch while doing the sync. Being in a single-user instance that&#39;s not an issue, plus all the browser caching (or CDN if you have that already)</p></div>
+  </div>
+  
+  <div class="item">
+    <div class="item__date"><a href="https://ricard.social/users/ricard/statuses/109930549767082356" target="_blank" rel="noopener noreferrer">2023-02-26 10:24:30.428000+00:00</a></div>
+    <div class="item__content"><p>⭐ ⭐ ⭐ ⭐ /4</p><p>Maybe 1 episode wasn&#39;t enough to feel empathy for Nagant, should she be gone 🤷 </p><p>Deku&#39;s transformation is interesting in the sense that he&#39;s going darker 👌 </p><p>Deku has gained power too quickly, in my opinion. He&#39;s now miles away from his peers at school. Too powerful, too fast.</p><p><a href="https://ricard.social/tags/Anime" class="mention hashtag" rel="tag">#<span>Anime</span></a> <a href="https://ricard.social/tags/BokuNoHeroAcademia" class="mention hashtag" rel="tag">#<span>BokuNoHeroAcademia</span></a></p></div>
+  </div>
+  
+  <div class="item">
+    <div class="item__date"><a href="https://ricard.social/users/ricard/statuses/109930445757695022" target="_blank" rel="noopener noreferrer">2023-02-26 09:58:03.376000+00:00</a></div>
+    <div class="item__content"><p>⭐ ⭐ ⭐ ⭐ /5</p><p>I think the hype was higher than what we got in this episode.</p><p>Some bits were CGI 👎 </p><p>Overall it had good moments. Sometimes Isagi does too much thinking and I get bored, I&#39;d love some more action rather than thinking all the time.</p><p>Your thoughts?</p><p><a href="https://ricard.social/tags/Anime" class="mention hashtag" rel="tag">#<span>Anime</span></a> <a href="https://ricard.social/tags/BlueLock" class="mention hashtag" rel="tag">#<span>BlueLock</span></a></p></div>
+  </div>
+  
   <div class="item">
     <div class="item__date"><a href="https://ricard.social/users/ricard/statuses/109927748481335203" target="_blank" rel="noopener noreferrer">2023-02-25 22:32:06.198000+00:00</a></div>
     <div class="item__content"><p><span class="h-card"><a href="https://opalstack.social/@RSNStats" class="u-url mention">@<span>RSNStats</span></a></span> <span class="h-card"><a href="https://mastodon.social/@donmacdonald" class="u-url mention">@<span>donmacdonald</span></a></span> Right, of course. Thank you for clarifying!</p><p><a href="https://ricard.social/tags/MLB" class="mention hashtag" rel="tag">#<span>MLB</span></a></p></div>
