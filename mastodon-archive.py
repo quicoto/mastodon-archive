@@ -1,57 +1,40 @@
-#!/usr/bin/env python3
-# encoding=utf8
+import json
+from os import path
 
-import os
-import argparse
-from mastodon import Mastodon
+with open("archive/outbox.json", "r") as outbox_file:
+    outbox = json.loads(outbox_file.read())
 
-# parse arguments
-parser = argparse.ArgumentParser (description = 'Generate an HTML archive of a mastodon user.')
-parser.add_argument ('--instance', required=True, help='url to your instance')
-parser.add_argument ('--access-token', required=True, help='token providing access to your account')
-parser.add_argument ('--max-urls', type=int, default=50000, help='max number of urls to collect')
-args = parser.parse_args()
+with open("archive/actor.json", "r") as actor_file:
+    actor = json.loads(actor_file.read())
 
-filename = "./dist/index.html"
+# map the outbox down to the actual objects
+statuses = [status.get("object") for status in outbox.get("orderedItems")]
 
-# connect to mastodon
-mstdn = Mastodon(
-		access_token = args.access_token,
-		api_base_url = args.instance
-		)
-user = mstdn.account_verify_credentials();
+articles = []
+# attachment urls may begin with "/media/" or something else we dont want
+# start with an offset of 1 to avoid checking root for /media or something else wrong
+pathOffset = 1
 
-# collect posts
-posts = mstdn.account_statuses (user.id);
+for status in statuses:
+    # need to ignore objects that arent status dicts
+    if type(status) == type({}):
+        date = status.get("published")
+        summary = status.get("summary")
+        url = status.get("url")
+        htmlContent = status.get("content")
+        attachments = [attachment.get("url") for attachment in status.get("attachment")]
+        images = ""
+        for imageURL in attachments:
+          images += "<a href='https://media.ricard.social{0}'><img loading='lazy' class='item__image' src='https://media.ricard.social{0}'></a>".format(imageURL)
+        article = "<article class='item'>\n\
+  <div class='item__date'><a href='{3}'>{0}</a></div>\n\
+  <div class='item__content'>{1}</div>\n\
+  <div class='item__media'>{2}</div>\n\
+</article>\n".format(date, htmlContent, images, url)
 
-counter = 0
+        articles.append(article)
 
-content = []
-
-def _item(post):
-  return f"""
-  <div class="item">
-    <div class="item__date"><a href="{post.uri}" target="_blank" rel="noopener noreferrer">{post.created_at}</a></div>
-    <div class="item__content">{post.content}</div>
-  </div>
-  """
-
-# iterate posts
-while posts and counter < args.max_urls:
-	for post in posts:
-		# Excludes private or direct conversations
-		if post.reblog or post.visibility == 'private' or post.visibility == 'direct':
-			continue
-
-		content.append(_item(post))
-		counter += 1
-
-		# break if we saw enough...
-		if counter >= args.max_urls:
-			break
-
-	# fetch new posts if necessary
-	posts = mstdn.fetch_next(posts)
+outfile = open("index.html", "w")
 
 header = """
 <!DOCTYPE html>
@@ -61,15 +44,20 @@ header = """
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ricard's archive | ricard.social</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?ver=2.0.0">
   <meta name="robots" content="noindex">
 </head>
 <body>
   <header>
-    <h1>Archive for Ricard's posts on ricard.social</h1>
+    <h1>Archive for Ricard's posts on <a href="https://ricard.social">ricard.social</a></h1>
     <h2>Number of posts: %s</h2>
   </header>
-  <main>""" % counter
+  <main>\n""" % len(articles)
+
+outfile.write(header)
+
+for article in reversed(articles):
+    outfile.write(article)
 
 footer = """
 	</main>
@@ -81,10 +69,6 @@ footer = """
 </body>
 </html>"""
 
-content = header + ''.join(content) + footer
+outfile.write(footer)
 
-os.mkdir('./dist')
-with open (filename, 'w') as f:
-	f.write (content)
-os.system('cp styles.css ./dist')
-
+outfile.close()
