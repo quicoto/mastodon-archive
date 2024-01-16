@@ -12,6 +12,10 @@ body {
   line-height: 1.5em;
 }
 
+h1 {
+  line-height: 1.2em;
+}
+
 h1 a {
   color: white;
   text-decoration: underline;
@@ -20,7 +24,7 @@ h1 a {
 main {
   display: grid;
   grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
 }
 
 main .item {

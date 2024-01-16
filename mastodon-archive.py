@@ -1,5 +1,6 @@
 import json
 from os import path
+from datetime import datetime
 
 with open("archive/outbox.json", "r") as outbox_file:
     outbox = json.loads(outbox_file.read())
@@ -18,19 +19,35 @@ pathOffset = 1
 for status in statuses:
     # need to ignore objects that arent status dicts
     if type(status) == type({}):
+        # get the date from the statuses (eg. 2024-01-15T16:52:47Z)
         date = status.get("published")
-        summary = status.get("summary")
+        # convert the date string to a datetime object
+        date_obj = datetime.strptime(date, "%Y-%m-%dT%H:%M:%SZ")
+        # format the datetime object to a more human-readable format
+        date = date_obj.strftime("%B %d, %Y")
+
         url = status.get("url")
+
         htmlContent = status.get("content")
+
         attachments = [attachment.get("url") for attachment in status.get("attachment")]
+
         images = ""
         for imageURL in attachments:
           images += "<a href='https://media.ricard.social{0}'><img loading='lazy' class='item__image' src='https://media.ricard.social{0}'></a>".format(imageURL)
+
+        summary = status.get("summary")
+        if summary:
+            summary = "<h4>{0}</h4>".format(summary)
+        else:
+            summary = ""
+
         article = "<article class='item'>\n\
   <div class='item__date'><a href='{3}'>{0}</a></div>\n\
+  {4}\n\
   <div class='item__content'>{1}</div>\n\
   <div class='item__media'>{2}</div>\n\
-</article>\n".format(date, htmlContent, images, url)
+</article>\n".format(date, htmlContent, images, url, summary)
 
         articles.append(article)
 
