@@ -12,6 +12,7 @@ with open("archive/actor.json", "r") as actor_file:
 statuses = [status.get("object") for status in outbox.get("orderedItems")]
 
 articles = []
+hashtags = []
 # attachment urls may begin with "/media/" or something else we dont want
 # start with an offset of 1 to avoid checking root for /media or something else wrong
 pathOffset = 1
@@ -29,6 +30,13 @@ for status in statuses:
         url = status.get("url")
 
         htmlContent = status.get("content")
+
+        # Find all the anchor tags with the class .hashtag and push them to the hashtags array
+        for hashtag in status.get("tag"):
+            if hashtag.get("type") == "Hashtag":
+                # Check if the hashtag is already in the array
+                if hashtag.get("name") not in hashtags:
+                  hashtags.append("<a href='{0}'>{1}</a>".format(hashtag.get("href"), hashtag.get("name")))
 
         attachments = [attachment.get("url") for attachment in status.get("attachment")]
 
@@ -51,7 +59,7 @@ for status in statuses:
 
         articles.append(article)
 
-outfile = open("index.html", "w")
+outfile = open("docs/index.html", "w")
 
 header = """
 <!DOCTYPE html>
@@ -61,7 +69,7 @@ header = """
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ricard's archive | ricard.social</title>
-  <link rel="stylesheet" href="styles.css?ver=2.0.0">
+  <link rel="stylesheet" href="styles.css?ver=3.0.0">
   <meta name="robots" content="noindex">
 </head>
 <body>
@@ -71,12 +79,34 @@ header = """
   </header>
   <main>\n""" % len(articles)
 
+# Order the hashtags alphabetically
+hashtags.sort()
+
+# Create a new list of unique hashtags and the number of times they appear
+uniqueHashtags = []
+uniqueHashtagsOutput = []
+for hashtag in hashtags:
+  if hashtag not in uniqueHashtags:
+    uniqueHashtags.append(hashtag)
+    uniqueHashtagsOutput.append(hashtag + " ({0})".format(hashtags.count(hashtag)))
+
+# Add the hashtags to the header
+header += "<details class='hashtags-accordion'><summary>Hashtags ({0})</summary><ul class='hashtags'>".format(len(uniqueHashtags))
+
+for hashtag in uniqueHashtagsOutput:
+    header += "<li>"
+    header += hashtag
+    header += "</li>"
+header += "</ul></details>"
+
+header += "<div class='items'>"
 outfile.write(header)
 
 for article in reversed(articles):
     outfile.write(article)
 
 footer = """
+    </div>
 	</main>
   <footer>
     <p>

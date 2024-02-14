@@ -16,15 +16,36 @@ h1 {
   line-height: 1.2em;
 }
 
-h1 a {
+h1 a,
+.hashtags a {
   color: white;
   text-decoration: underline;
 }
 
-main {
+.hashtags-accordion {
+  border: 1px solid;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.hashtags-accordion summary {
+  cursor: pointer;
+}
+
+.hashtags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  list-style-type: none;
+  padding: 2rem;
+  margin: 0;
+}
+
+.items {
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+  grid-template-rows: masonry;
 }
 
 main .item {
