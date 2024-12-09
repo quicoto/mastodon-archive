@@ -68,16 +68,16 @@ header = """
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ricard's archive | ricard.social</title>
+  <title>%s Mastodon archive</title>
   <link rel="stylesheet" href="styles.css?ver=3.0.0">
   <meta name="robots" content="noindex">
 </head>
 <body>
   <header>
-    <h1>Archive for Ricard's posts on <a href="https://ricard.social">ricard.social</a></h1>
+    <h1>Archive for <a href="%s">%s</a> posts</h1>
     <h2>Number of posts: %s</h2>
   </header>
-  <main>\n""" % len(articles)
+  <main>\n""" % (actor.get("name"), actor.get("url"), actor.get("name"), len(articles))
 
 # Order the hashtags alphabetically
 hashtags.sort()
