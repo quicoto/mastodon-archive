@@ -3,10 +3,9 @@ from os import path
 from datetime import datetime
 import sys
 
-IMAGE_HOST = 'https://media.ricard.social'
+imageHost = 'https://media.ricard.social'
 if len(sys.argv) > 1:
-    IMAGE_HOST = sys.argv[1]
-print(IMAGE_HOST)
+    imageHost = sys.argv[1]
 
 with open("archive/outbox.json", "r") as outbox_file:
     outbox = json.loads(outbox_file.read())
@@ -51,7 +50,7 @@ for status in statuses:
 
         images = ""
         for imageURL in attachments:
-          images += "<a href='{0}{1}'><img loading='lazy' class='item__image' src='{0}{1}'></a>".format(IMAGE_HOST, imageURL)
+          images += "<a href='{0}{1}'><img loading='lazy' class='item__image' src='{0}{1}'></a>".format(imageHost, imageURL)
 
         summary = status.get("summary")
         if summary:
