@@ -3,7 +3,7 @@ from os import path
 from datetime import datetime
 import sys
 
-imageHost = 'https://media.ricard.social'
+imageHost = ''
 if len(sys.argv) > 1:
     imageHost = sys.argv[1]
 
