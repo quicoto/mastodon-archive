@@ -1,6 +1,11 @@
 import json
 from os import path
 from datetime import datetime
+import sys
+
+imageHost = 'https://media.ricard.social'
+if len(sys.argv) > 1:
+    imageHost = sys.argv[1]
 
 with open("archive/outbox.json", "r") as outbox_file:
     outbox = json.loads(outbox_file.read())
@@ -20,6 +25,9 @@ pathOffset = 1
 for status in statuses:
     # need to ignore objects that arent status dicts
     if type(status) == type({}):
+        if not "https://www.w3.org/ns/activitystreams#Public" in (status.get("to", []) + status.get("cc", [])):
+            # Toot is not public, let's not output it.
+            continue
         # get the date from the statuses (eg. 2024-01-15T16:52:47Z)
         date = status.get("published")
         # convert the date string to a datetime object
@@ -42,7 +50,7 @@ for status in statuses:
 
         images = ""
         for imageURL in attachments:
-          images += "<a href='https://media.ricard.social{0}'><img loading='lazy' class='item__image' src='https://media.ricard.social{0}'></a>".format(imageURL)
+          images += "<a href='{0}{1}'><img loading='lazy' class='item__image' src='{0}{1}'></a>".format(imageHost, imageURL)
 
         summary = status.get("summary")
         if summary:
