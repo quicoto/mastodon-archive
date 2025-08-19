@@ -2,6 +2,7 @@ import json
 from os import path
 from datetime import datetime
 import sys
+import re
 
 imageHost = ''
 if len(sys.argv) > 1:
@@ -21,6 +22,12 @@ hashtags = []
 # attachment urls may begin with "/media/" or something else we dont want
 # start with an offset of 1 to avoid checking root for /media or something else wrong
 pathOffset = 1
+
+# Minify the HTML content by removing unnecessary whitespace and line breaks
+def minify_html(html):
+    html = re.sub(r">\s+<", "><", html)  # Remove whitespace between tags
+    html = re.sub(r"\s+", " ", html)    # Collapse multiple spaces into one
+    return html
 
 for status in statuses:
     # need to ignore objects that arent status dicts
@@ -69,8 +76,7 @@ for status in statuses:
 
 outfile = open("docs/index.html", "w")
 
-header = """
-<!DOCTYPE html>
+header = """<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -85,7 +91,12 @@ header = """
     <h1>Archive for <a href="%s">%s</a> posts</h1>
     <h2>Number of posts: %s</h2>
   </header>
-  <main>\n""" % (actor.get("name"), actor.get("url"), actor.get("name"), len(articles))
+  <main>\n""" % (
+    actor.get("name"),
+    actor.get("url"),
+    actor.get("name"),
+    "{:,}".format(len(articles))
+)
 
 # Order the hashtags alphabetically
 hashtags.sort()
@@ -108,10 +119,11 @@ for hashtag in uniqueHashtagsOutput:
 header += "</ul></details>"
 
 header += "<div class='items'>"
+header = minify_html(header)
 outfile.write(header)
 
 for article in reversed(articles):
-    outfile.write(article)
+    outfile.write(minify_html(article))
 
 footer = """
     </div>
@@ -123,7 +135,7 @@ footer = """
   </footer>
 </body>
 </html>"""
-
+footer = minify_html(footer)
 outfile.write(footer)
 
 outfile.close()
