@@ -75,6 +75,23 @@ a:hover {
   max-width: 100%;
 }
 
+header:has(img) {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 1rem;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    padding-top: 0;
+    gap: 2rem;
+  }
+}
+
+header img {
+  width: 150px;
+}
+
 footer {
   color: #111920;
   background: white;

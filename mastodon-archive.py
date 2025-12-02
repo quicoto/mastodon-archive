@@ -76,6 +76,23 @@ for status in statuses:
 
 outfile = open("docs/index.html", "w")
 
+# Check if the folder has an "avatar.{jpg,png,wepb}" and copy it to the docs folder
+assetExtensions = ["jpg", "png", "webp"]
+avatarExt = None
+for ext in assetExtensions:
+    avatarPath = "archive/avatar." + ext
+    if path.exists(avatarPath):
+        avatarExt = ext
+        with open(avatarPath, "rb") as avatarFile:
+            with open("docs/avatar." + ext, "wb") as outAvatarFile:
+                outAvatarFile.write(avatarFile.read())
+        break
+
+# Build avatar image HTML conditionally
+avatarImgHtml = ""
+if avatarExt:
+  avatarImgHtml = '<div><img class="avatar" src="./avatar.%s" alt="Avatar of %s"></div>' % (avatarExt, actor.get("name"))
+
 header = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,11 +105,15 @@ header = """<!DOCTYPE html>
 </head>
 <body>
   <header>
-    <h1>Archive for <a href="%s">%s</a> posts</h1>
-    <h2>Number of posts: %s</h2>
+    %s
+    <div>
+      <h1>Archive for <a href="%s">%s</a> posts</h1>
+      <h2>Number of posts: %s</h2>
+    </div>
   </header>
   <main>\n""" % (
     actor.get("name"),
+    avatarImgHtml,
     actor.get("url"),
     actor.get("name"),
     "{:,}".format(len(articles))
