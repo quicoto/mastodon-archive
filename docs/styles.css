@@ -16,7 +16,7 @@ h1 {
   line-height: 1.2em;
 }
 
-h1 a,
+header a,
 .hashtags a {
   color: white;
   text-decoration: underline;
@@ -98,4 +98,8 @@ footer {
   text-align: center;
   padding: 1rem;
   margin: 1rem 0;
+}
+
+.no-decoration {
+  text-decoration: none;
 }
