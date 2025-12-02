@@ -108,7 +108,7 @@ header = """<!DOCTYPE html>
     %s
     <div>
       <h1>Archive for <a href="%s">%s</a> posts</h1>
-      <h2><a class="no-decoration" href="@%s">@%s@%s</a></h2>
+      <h2><a class="no-decoration" href="%s">@%s@%s</a></h2>
       <h3>Number of posts: %s</h3>
     </div>
   </header>
